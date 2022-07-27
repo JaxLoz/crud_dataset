@@ -46,23 +46,8 @@
         
     <div class="container mt-5">
                     <div class="row"> 
-                        <div class="col-md-3">
-                        <h1><span class="badge bg-success">Agregar Prenda</span></h1>
-                                <form action="../insert/insert_producto.php" method="POST">
-                                    
-                                    <input type="text" class="form-control mb-3" name="idP" placeholder="Codigo Producto">
-                                    <input type="text" class="form-control mb-3" name="nom" placeholder="Nombre">
-                                    <input type="text" class="form-control mb-3" name="tal" placeholder="Talla">
-                                    <input type="text" class="form-control mb-3" name="num" placeholder="Numero (Opcional)">
-                                    <input type="text" class="form-control mb-3" name="obs" placeholder="Observacion">
-                                    <input type="text" class="form-control mb-3" name="idD" placeholder="ID Detalles Factura">
-                                    <!--select name="Detalles_factura" id="" style="width:260px;border:1px solid #04467E;background-color:#DDFFFF;color:#2D4167;font-size:18px"-->
-                                   
-                                    <input type="submit" class="btn btn-primary" value="Registrar">
-                                </form>
-                        </div>
                         
-                        <div class="col-md-8">
+                        <div class="col">
                             <table class="table caption-top">
                                 <thead class="table-danger table-striped border-bottom" >
                                     <tr align="center">
@@ -99,7 +84,62 @@
                             </table>
                         </div>
                         </div>
-                    </div>  
+                    </div> 
+                    
+                    <div class="row">
+                    
+                        <div class="col-md-3">
+                        <h1><span class="badge bg-success">Agregar Prenda</span></h1>
+                                <form action="../insert/insert_producto.php" method="POST">
+                                    
+                                    <input type="number" class="form-control mb-3" name="idP" placeholder="Codigo Producto">
+                                    <input type="text" class="form-control mb-3" name="nom" placeholder="Nombre">
+                                    <input type="text" class="form-control mb-3" name="tal" placeholder="Talla">
+                                    <input type="number" class="form-control mb-3" name="num" placeholder="Numero (Opcional)">
+                                    <input type="number" class="form-control mb-3" name="idD" placeholder="ID Detalles Factura">
+                                    <textarea  class="form-cotrol mb-3" name="Observacion" placeholder="Descripcion" cols="32" rows="10" maxlength="200"></textarea>
+                                    <!--select name="Detalles_factura" id="" style="width:260px;border:1px solid #04467E;background-color:#DDFFFF;color:#2D4167;font-size:18px"-->
+                                   
+                                    <input type="submit" class="btn btn-primary" value="Registrar">
+                                </form>
+                        </div>
+
+                        <div class="col-md-8">
+                            <table class="table caption-top">
+                                <thead class="table-danger table-striped border-bottom" >
+                                    <tr align="center">
+                                        
+                                        <th>Talla</th>
+                                        <th>Numero</th>
+                                        <th>Observacion</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                        <?php
+                                            while($row=mysqli_fetch_array($query))
+                                            {
+                                        ?>
+                                            <tr>
+                                                
+                                                <th><?php  echo $row['talla']?></th> 
+                                                <th><?php  echo $row['numero']?></th>
+                                                <th><?php echo $row['observacion']?></th>
+                                                <th><?php echo $row['id_detalles']?></th>
+                                                <th align="center"><a href="actualizar_mun.php?codigo_mun_=<?php echo $row['0'] ?>"> <button type="button" class="btn btn-info">Editar</button></a></th>
+                                                <th align="center"><a href="delete_mun.php?codigo_mun_=<?php echo $row['0'] ?>"> <button type="button"  class="btn btn-danger" onclick="return confirmDelete()">Eliminar</button></a></th>                                        
+                                            </tr>
+                                        <?php 
+                                            }
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                                        
+                    </div> 
                 </div>
     </body>
 </html>
